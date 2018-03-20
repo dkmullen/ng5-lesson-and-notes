@@ -1,0 +1,27 @@
+<h2>My Heroes</h2>
+<ul class="heroes">
+  <!-- *ngFor iterates thru a list -->
+  <!-- [class.selected] is ng class binding. Adds the selected style from css if 
+    hero === selectedHero -->
+  <!-- Note the example of event-binding syntax - when click, execute onSelect(hero) 
+    which lives in component.ts -->
+  <li *ngFor="let hero of heroes" 
+    [class.selected]="hero === selectedHero"
+    (click)="onSelect(hero)">
+    <span class="badge">{{hero.id}}</span> {{hero.name}}
+  </li>
+</ul>
+ 
+<!-- *ngIf used to display this div only if a hero is selected-->
+<div *ngIf="selectedHero">
+ 
+  <h2>{{ selectedHero.name | uppercase }} Details</h2>
+  <div><span>id: </span>{{selectedHero.id}}</div>
+  <div>
+    <label>name:
+      <!-- ngModel is for two-way binding -->
+      <input [(ngModel)]="selectedHero.name" placeholder="name">
+    </label>
+  </div>
+ 
+</div>
